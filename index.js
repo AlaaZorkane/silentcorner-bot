@@ -36,6 +36,7 @@ client.on("message", msg => {
 	module_faddoul(msg);
 	module_ozaazaa(msg);
 	control.command(msg);
+
 });
 
 client.on("messageUpdate", (oldMsg, newMsg) => {
