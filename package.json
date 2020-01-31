@@ -1,0 +1,28 @@
+{
+  "name": "silentcorner-bot",
+  "version": "1.0.0",
+  "description": "Discord bot for !silentcorner",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlaaZorkane/silentcorner-bot.git"
+  },
+  "author": "!SilentCorner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlaaZorkane/silentcorner-bot/issues"
+  },
+  "homepage": "https://github.com/AlaaZorkane/silentcorner-bot#readme",
+  "dependencies": {
+    "@discordjs/uws": "^10.149.0",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
