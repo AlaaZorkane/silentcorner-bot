@@ -1,8 +1,7 @@
 require("dotenv").config();
+const control = require("./Modules/Control");
 const Discord = require("discord.js");
 const client = new Discord.Client();
-
-
 
 /*
 ** Modules here!!
@@ -36,6 +35,7 @@ client.on("ready", () => {
 client.on("message", msg => {
 	module_faddoul(msg);
 	module_ozaazaa(msg);
+	control.command(msg);
 });
 
 client.on("messageUpdate", (oldMsg, newMsg) => {
