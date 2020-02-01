@@ -77,6 +77,7 @@ client.on("message", msg => {
 			module_faddoul(msg);
 			module_ozaazaa(msg);
 			module_mgheber(msg);
+			module_recoding(msg);
 			module_simplifier(msg);
 			control.command_test(client, msg);
 		}
