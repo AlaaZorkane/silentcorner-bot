@@ -41,6 +41,8 @@ const module_faddoul = (msg) => {
 const module_fjla = (newMsg) => {
 	if (newMsg.content === '.') {
 		newMsg.react('🍆');
+		const channel = client.channels.find(x => x.name === "fjel");
+		channel.send(`🍆 in <#${newMsg.channel.id}>`);
 	}
 }
 
