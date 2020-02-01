@@ -56,9 +56,9 @@ const module_mgheber = (msg) => {
 }
 
 const module_recoding = (msg) => {
-	const recode = /tla3.*(dir)*.*[R|r]ecoding[?]*|[R|r]ecoding[ ]*\?/g
-	if (msg.content.match(recode)) {
-		msg.channel.send ('La');
+	const recode = /tla3.*(dir)*.*recoding[?]*|recoding[ ]*\?/g
+	if (msg.content.toLowerCase().match(recode)) {
+		msg.channel.send('La');
 	}
 }
 
