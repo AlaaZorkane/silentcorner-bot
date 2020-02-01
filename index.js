@@ -57,15 +57,32 @@ const module_simplifier = (msg) => {
 
 client.on("ready", () => {
 	getToken(client);
-	console.log(`[+] Bot initiated with tag ${client.user.tag}!`);
+	if (Boolean(process.env.DEV))
+		console.log(`[+] Bot launched in DEV MODE (Will only listen to messages in #bot-test) with tag ${client.user.tag}!`);
+	else
+		console.log(`[+] Bot initiated with tag ${client.user.tag}!`);
 });
 
 client.on("message", msg => {
-	module_faddoul(msg);
-	module_ozaazaa(msg);
-	module_mgheber(msg);
-	module_simplifier(msg);
-	control.command(client, msg);
+	if (Boolean(process.env.DEV)) {
+		// Add your modules here while testing
+		if (msg.channel.name === "bot-test") {
+			module_faddoul(msg);
+			module_ozaazaa(msg);
+			module_mgheber(msg);
+			module_simplifier(msg);
+			control.command_test(client, msg);
+		}
+	} else {
+		// DONT ADD MODULES HERE WHILE TESTING
+		// While doing a PR you should add your functionality both here and above
+		// Yeah we should come up with a more elegant way but for now this will do
+		module_faddoul(msg);
+		module_ozaazaa(msg);
+		module_mgheber(msg);
+		module_simplifier(msg);
+		control.command(client, msg);
+	}
 });
 
 client.on("messageUpdate", (oldMsg, newMsg) => {

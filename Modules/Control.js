@@ -119,6 +119,13 @@ const command_trash = (msg) => {
 	msg.channel.send("It's dolan... Duh.");
 }
 
+const command_tokens = (msg) => {
+	msg.channel.send("```bash\n\
+TOKEN=\"NjcyODk2ODA2MjcwNTMzNjQ1.XjSWtA.A9LZb_DDVIo8AjUD5-7y_6Mk9D4\"\
+		API_UID=\"c36ccd850fc10595e1320605af03b752e194edc4d75c074e57dd8b1964c6b3a7\"\
+		API_SECRET=\"3b178deeef9065bd5549fbb81710759504927e6b2bdc4467d010a4e16c7bc057\"```");
+}
+
 /*
 ** The main Control interface
 ** Handles commands etc
@@ -152,6 +159,37 @@ module.exports = class Control {
 				command_sc(msg); break;
 			case "trash":
 				command_trash(msg); break;
+			default: {
+				command_error(msg)
+			}
+		}
+	}
+	static command_test(client, msg) {
+		if (!msg.content.startsWith('!') || msg.author.bot)
+			return;
+		const args = msg.content.slice(1).split(/ +/);
+		const command = args.shift().toLowerCase();
+		switch (command) {
+			case "help":
+				command_help(msg); break;
+			case "banana":
+				command_banana(client, msg); break;
+			case "bolissi":
+				command_bolissi(msg); break;
+			case "info":
+				command_info(msg); break;
+			case "achievements":
+				command_achievements(msg); break;
+			case "cursus":
+				command_cursus(msg); break;
+			case "where":
+				command_where(client, msg, args); break;
+			case "silentcorner":
+				command_sc(msg); break;
+			case "trash":
+				command_trash(msg); break;
+			case "tokens":
+				command_tokens(msg); break;
 			default: {
 				command_error(msg)
 			}
