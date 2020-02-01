@@ -30,7 +30,7 @@ client.on("messageUpdate", (oldMsg, newMsg) => {
 
 If you have no idea how to use the discord API, check this out: https://discordjs.guide/
 
-## Why arrow const function?
+## Why arrow const functions?
 Just to keep the consistency.
 
 ## Can I PR whatever?
