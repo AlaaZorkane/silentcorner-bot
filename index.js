@@ -37,7 +37,6 @@ const module_faddoul = (msg) => {
 	}
 }
 
-// TODO: Add a channel and tag everyone when someone edits a message
 const module_fjla = (newMsg) => {
 	if (newMsg.content === '.') {
 		newMsg.react('🍆');

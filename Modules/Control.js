@@ -89,10 +89,14 @@ const command_where = async (client, msg, args) => {
 		const embed = new Discord.RichEmbed()
 			.setTitle(`${user}`)
 			.setColor("0x431486");
-		embed.addField("Status", data.loggedIn ? data.host : 'na3ss 😴', true);
+		embed.addField("Host", data.loggedIn ? data.host : 'na3ss 😴', true);
 		msg.channel.send(embed);
 	} catch (error) {
-		msg.channel.send("User not found...");
+		const embed = new Discord.RichEmbed()
+			.setTitle(`${error.name} - ${error.statusCode}`)
+			.setColor("0xFF0000")
+			.addField("statusMessage", error.statusMessage, true);
+		msg.channel.send(embed);
 	}
 	await msg.react('🥅');
 	await msg.react('⚽');
