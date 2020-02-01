@@ -7,7 +7,9 @@ const help = {
 	"info [user]": "Shows [user]'s server info",
 	"achievements [user]": "Shows [user]'s achievements",
 	"cursus [user]": "Shows [user]'s 42 Cursus info",
-	"where [user]": "Shows where is the [user]. ex: e1r4p13"
+	"where [user]": "Shows where is the [user]. ex: e1r4p13",
+	"bolissi": "Tells you the story of lbolissi",
+	"silentcorner": "ma3art"
 }
 
 const command_help = (msg) => {
@@ -74,7 +76,6 @@ const command_where = async (client, msg, args) => {
 			},
 			json: true
 		})).body[0];
-		console.log(response);
 		const data = {
 			loggedIn: false,
 			lastSeen: String,
@@ -96,6 +97,10 @@ const command_where = async (client, msg, args) => {
 	await msg.react('🥅');
 	await msg.react('⚽');
 	await msg.react('🏃');
+}
+
+const command_sc = (msg) => {
+	msg.channel.send("The :exclamation: is silent :zipper_mouth:");
 }
 
 /*
@@ -127,6 +132,8 @@ module.exports = class Control {
 				command_cursus(msg); break;
 			case "where":
 				command_where(client, msg, args); break;
+			case "silentcorner":
+				command_sc(msg); break;
 			default: {
 				command_error(msg)
 			}
