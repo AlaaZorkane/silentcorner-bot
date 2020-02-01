@@ -33,6 +33,13 @@ const module_mgheber = (msg) => {
 	}
 }
 
+const module_recoding = (msg) => {
+	const recode = /tla3.*(dir)*.*recoding[?]*|recoding[ ]*\?/g
+	if (msg.content.toLowerCase().match(recode)) {
+		msg.channel.send('La');
+	}
+}
+
 const module_simplifier = (msg) => {
 	switch (msg.content.toLowerCase()) {
 		case "character linear data sequence": {
@@ -41,7 +48,7 @@ const module_simplifier = (msg) => {
 		case "anonymous control string": {
 			msg.channel.send("https://en.wikipedia.org/wiki/Command_(computing)");
 		} break;
-		case "linear collection of data": {
+		case "linear data-reference sequence": {
 			msg.channel.send("https://en.wikipedia.org/wiki/Linked_list");
 		} break;
 		case "anonymous strings": {
@@ -80,6 +87,7 @@ client.on("message", msg => {
 		module_faddoul(msg);
 		module_ozaazaa(msg);
 		module_mgheber(msg);
+		module_recoding(msg);
 		module_simplifier(msg);
 		control.command(client, msg);
 	}
