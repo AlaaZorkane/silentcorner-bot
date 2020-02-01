@@ -1,30 +1,9 @@
 require("dotenv").config();
-const control = require("./Modules/Control");
+const control = require("./modules/Control");
 const Discord = require("discord.js");
-
-/*
-** 42 API Stuff - DO NOT EDIT
-*/
+const getToken = require("./utils/api");
 const client = new Discord.Client();
-const credentials = {
-	client: {
-		id: process.env.API_UID,
-		secret: process.env.API_SECRET
-	},
-	auth: {
-		tokenHost: 'https://api.intra.42.fr'
-	}
-};
-const oauth2 = require('simple-oauth2').create(credentials);
-const getToken = async () => {
-	try {
-		const result = oauth2.clientCredentials.getToken();
-		const accessToken = oauth2.accessToken.create(await result);
-		client.apiToken = accessToken.token.access_token;
-	} catch (error) {
-		console.log('[+] 42API Access Token error', error.message);
-	}
-}
+
 /*
 ** Modules here!!
 ** Modules are just functions so add a function and its behavior then plug it in the event listener you want
@@ -77,7 +56,7 @@ const module_simplifier = (msg) => {
 */
 
 client.on("ready", () => {
-	getToken();
+	getToken(client);
 	console.log(`[+] Bot initiated with tag ${client.user.tag}!`);
 });
 

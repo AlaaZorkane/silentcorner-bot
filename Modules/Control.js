@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const got = require('got');
+const getToken = require('../utils/api');
 
 const help = {
 	"help": "Displays this message",
@@ -93,11 +94,17 @@ const command_where = async (client, msg, args) => {
 		embed.addField("Host", data.loggedIn ? data.host : 'na3ss 😴', true);
 		msg.channel.send(embed);
 	} catch (error) {
-		const embed = new Discord.RichEmbed()
-			.setTitle(`${error.name} - ${error.statusCode}`)
-			.setColor("0xFF0000")
-			.addField("statusMessage", error.statusMessage, true);
-		msg.channel.send(embed);
+		if (error.statusCode === 401) {
+			getToken(client);
+			command_where(client, msg, args);
+			return ;
+		} else {
+			const embed = new Discord.RichEmbed()
+				.setTitle(`${error.name} - ${error.statusCode}`)
+				.setColor("0xFF0000")
+				.addField("statusMessage", error.statusMessage, true);
+			msg.channel.send(embed);
+		}
 	}
 	await msg.react('🥅');
 	await msg.react('⚽');
@@ -111,6 +118,7 @@ const command_sc = (msg) => {
 const command_trash = (msg) => {
 	msg.channel.send("It's dolan... Duh.");
 }
+
 /*
 ** The main Control interface
 ** Handles commands etc
