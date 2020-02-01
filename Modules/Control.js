@@ -9,7 +9,8 @@ const help = {
 	"cursus [user]": "Shows [user]'s 42 Cursus info",
 	"where [user]": "Shows where is the [user]. ex: e1r4p13",
 	"bolissi": "Tells you the story of lbolissi",
-	"silentcorner": "ma3art"
+	"silentcorner": "ma3art",
+	"faddoul": "Add the Faddoul touch to the last message"
 }
 
 const command_help = (msg) => {
@@ -107,6 +108,15 @@ const command_sc = (msg) => {
 	msg.channel.send("The :exclamation: is silent :zipper_mouth:");
 }
 
+const command_faddoul = (client, msg) => {
+	const channel = msg.channel;
+	channel.fetchMessages({ limit: 2 }).then(async messages => {
+		let lastMessage = messages.last();
+		if (!lastMessage.author.bot)
+			await lastMessage.react('🍋');
+	})
+}
+
 /*
 ** The main Control interface
 ** Handles commands etc
@@ -138,6 +148,8 @@ module.exports = class Control {
 				command_where(client, msg, args); break;
 			case "silentcorner":
 				command_sc(msg); break;
+			case "faddoul":
+				command_faddoul(msg); break;
 			default: {
 				command_error(msg)
 			}
