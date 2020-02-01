@@ -9,7 +9,8 @@ const help = {
 	"cursus [user]": "Shows [user]'s 42 Cursus info",
 	"where [user]": "Shows where is the [user]. ex: e1r4p13",
 	"bolissi": "Tells you the story of lbolissi",
-	"silentcorner": "ma3art"
+	"silentcorner": "ma3art",
+	"trash": "Gives you the definition of trash"
 }
 
 const command_help = (msg) => {
@@ -107,6 +108,9 @@ const command_sc = (msg) => {
 	msg.channel.send("The :exclamation: is silent :zipper_mouth:");
 }
 
+const command_trash = (msg) => {
+	msg.channel.send("It's dolan... Duh.");
+}
 /*
 ** The main Control interface
 ** Handles commands etc
@@ -138,6 +142,8 @@ module.exports = class Control {
 				command_where(client, msg, args); break;
 			case "silentcorner":
 				command_sc(msg); break;
+			case "trash":
+				command_trash(msg); break;
 			default: {
 				command_error(msg)
 			}
