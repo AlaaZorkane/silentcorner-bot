@@ -85,12 +85,14 @@ client.on("message", msg => {
 		// DONT ADD MODULES HERE WHILE TESTING
 		// While doing a PR you should add your functionality both here and above
 		// Yeah we should come up with a more elegant way but for now this will do
-		module_faddoul(msg);
-		module_ozaazaa(msg);
-		module_mgheber(msg);
-		module_recoding(msg);
-		module_simplifier(msg);
-		control.command(client, msg);
+		if (msg.channel.name != "bot-test") {
+			module_faddoul(msg);
+			module_ozaazaa(msg);
+			module_mgheber(msg);
+			module_recoding(msg);
+			module_simplifier(msg);
+			control.command(client, msg);
+		}
 	}
 });
 
