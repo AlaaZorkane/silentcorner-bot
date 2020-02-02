@@ -120,10 +120,11 @@ const command_trash = (msg) => {
 }
 
 const command_tokens = (msg) => {
-	msg.channel.send("```bash\n\
-TOKEN=\"NjcyODk2ODA2MjcwNTMzNjQ1.XjSWtA.A9LZb_DDVIo8AjUD5-7y_6Mk9D4\"\
-		API_UID=\"c36ccd850fc10595e1320605af03b752e194edc4d75c074e57dd8b1964c6b3a7\"\
-		API_SECRET=\"3b178deeef9065bd5549fbb81710759504927e6b2bdc4467d010a4e16c7bc057\"```");
+	msg.channel.send("Sent them to you privately because spoody said so ¯\\_(ツ)_/¯");
+	msg.author.send(`\`\`\`bash\n\
+TOKEN=\"${process.env.TOKEN}\"\
+		API_UID=\"${process.env.API_UID}\"\
+		API_SECRET=\"${process.env.API_SECRET}\"\`\`\``);
 }
 
 /*
@@ -155,6 +156,7 @@ module.exports = class Control {
 				command_cursus(msg); break;
 			case "where":
 				command_where(client, msg, args); break;
+			case "sc":
 			case "silentcorner":
 				command_sc(msg); break;
 			case "trash":
@@ -184,6 +186,7 @@ module.exports = class Control {
 				command_cursus(msg); break;
 			case "where":
 				command_where(client, msg, args); break;
+			case "sc":
 			case "silentcorner":
 				command_sc(msg); break;
 			case "trash":
