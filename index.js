@@ -108,6 +108,7 @@ client.on("message", msg => {
 			module_mgheber(msg);
 			module_recoding(msg);
 			module_simplifier(msg);
+			module_nddah(msg);
 			control.command(client, msg);
 		}
 	}
