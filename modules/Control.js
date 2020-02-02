@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const got = require('got');
 const getToken = require('../utils/api');
+var store = require('../modules/Store');
 
 const help = {
 	"help": "Displays this message",
@@ -57,8 +58,15 @@ const command_banana = (client, msg) => {
 }
 
 const command_bolissi = (msg) => {
-	const storytime = "Mohim daba farahi o ayoub zahir o oxidia mchaw 9ssaw mssemen :pancakes:, o homa raj3in dak bolissi :man_police_officer: dial ronpwa :motorway: 3yet 3la farahi,oxidia chaf bolissi :man_police_officer: b7al hakka o howa it9ob dar rasso machafch :eyes: ,safi mcha 3ndo ayoub zahir o farahi, galihom bolissi :man_police_officer: jibo lia l9ess :hamburger: m3nd brishia :chicken:  o golo lih ra lbolissi :man_police_officer: dial ronpwa ma3tahomch floss :money_with_wings: ,:man_running: mchaw l 3nd brishia :chicken: b7al hakka tssnaw :sleepy: kano gdamhom chi drari galol brishia 3tina l9ess :sandwich:  ra bolissi dial rondpwa :arrows_counterclockwise:  etc, galihom brishialla ana bach ghan3rf had bolissi o hakka :angry: , tmaw homa raj3in :weary: , ayoubzahir bane lih blan mafihch o howa it9ob mn wa7d drb :confounded: , farahi gallla  7choma :pensive:  bolissi daymn kndozo mn tma rje3 3ndo galih ra mabghach :cold_sweat: brishia i3tini galia bach an3rf ana had bolissi etc, galih bolissi :police_officer: hak zrwata  :field_hockey:  wriha lih ra yndik i3tik l9ess :yum: , galih farahi la ta wachmnytk zrwata :scream: ??? O rak 3arf bolissi ma3ndoch 7e9 i3ti zrwata fiha l7abss :flag_cu: ,aya 7aja sawa2ane kane l minout :man_detective:  etc, mohim farahi b9a ta b9a o khda di zrwata :unamused:  o tmma ghadi biha mderegha :eyes: , mcha 3nd brishia wraha lih galih brishia wtfff :cold_sweat:  safi safi hak l9ass :sandwich:  , 3tah sandwish o tma raj3 farahi o howa mal9ach l bolissi :scream::scream::scream: , safi mcha mdrassa 9ssa sandwish :yum:."
-	msg.channel.send(storytime);
+	if (!store.bolissiFlag) {
+		const storytime = "Mohim daba farahi o ayoub zahir o oxidia mchaw 9ssaw mssemen :pancakes:, o homa raj3in dak bolissi :man_police_officer: dial ronpwa :motorway: 3yet 3la farahi,oxidia chaf bolissi :man_police_officer: b7al hakka o howa it9ob dar rasso machafch :eyes: ,safi mcha 3ndo ayoub zahir o farahi, galihom bolissi :man_police_officer: jibo lia l9ess :hamburger: m3nd brishia :chicken:  o golo lih ra lbolissi :man_police_officer: dial ronpwa ma3tahomch floss :money_with_wings: ,:man_running: mchaw l 3nd brishia :chicken: b7al hakka tssnaw :sleepy: kano gdamhom chi drari galol brishia 3tina l9ess :sandwich:  ra bolissi dial rondpwa :arrows_counterclockwise:  etc, galihom brishialla ana bach ghan3rf had bolissi o hakka :angry: , tmaw homa raj3in :weary: , ayoubzahir bane lih blan mafihch o howa it9ob mn wa7d drb :confounded: , farahi gallla  7choma :pensive:  bolissi daymn kndozo mn tma rje3 3ndo galih ra mabghach :cold_sweat: brishia i3tini galia bach an3rf ana had bolissi etc, galih bolissi :police_officer: hak zrwata  :field_hockey:  wriha lih ra yndik i3tik l9ess :yum: , galih farahi la ta wachmnytk zrwata :scream: ??? O rak 3arf bolissi ma3ndoch 7e9 i3ti zrwata fiha l7abss :flag_cu: ,aya 7aja sawa2ane kane l minout :man_detective:  etc, mohim farahi b9a ta b9a o khda di zrwata :unamused:  o tmma ghadi biha mderegha :eyes: , mcha 3nd brishia wraha lih galih brishia wtfff :cold_sweat:  safi safi hak l9ass :sandwich:  , 3tah sandwish o tma raj3 farahi o howa mal9ach l bolissi :scream::scream::scream: , safi mcha mdrassa 9ssa sandwish :yum:."
+		msg.channel.send(storytime);
+		store.bolissiFlag = true;
+	} else {
+		if (!msg.content.match(/(zrwata)|(zarwata)|(zarwat)|(zorwata)|(zrwatta)/g)) {
+			msg.channel.send("safi 9ssa sandwish...");
+		}
+	}
 }
 
 const command_achievements = (msg) => {

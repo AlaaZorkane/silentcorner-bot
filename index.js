@@ -2,6 +2,7 @@ require("dotenv").config();
 const Discord = require("discord.js");
 const getToken = require("./utils/api");
 const control = require("./modules/Control");
+var store = require("./modules/Store");
 const client = new Discord.Client();
 
 /*
@@ -17,7 +18,7 @@ const module_faddoul = (msg) => {
 }
 
 const module_fjla = (newMsg) => {
-	if (newMsg.content === '.') {
+	if (newMsg.content === '.' && newMsg.channel.name != "!SilentCorner") {
 		newMsg.react('🍆');
 		const channel = client.channels.find(x => x.name === "fjel");
 		channel.send(`🍆 in <#${newMsg.channel.id}>`);
@@ -57,6 +58,19 @@ const module_simplifier = (msg) => {
 	}
 }
 
+const module_nddah = (msg) => {
+	if (store.bolissiFlag && msg.content.match(/(zerwata)|(zrwata)|(zarwata)|(zarwat)|(zorwata)|(zrwatta)/g)) {
+		const gifs = [
+			"https://tenor.com/view/lol-risa-risitas-laught-jaja-gif-14980369",
+			"https://tenor.com/view/risitas-yes-giggle-gif-13898844",
+			"https://tenor.com/view/lol-risitas-haha-laught-jaja-gif-14980367",
+			"https://tenor.com/view/memes-risitas-laughing-lmao-lol-gif-11500030",
+			"https://tenor.com/view/risitas-el-risitas-juan-joya-borja-issou-jesus-gif-12145166"
+		];
+		msg.channel.send(gifs[Math.floor(Math.random() * gifs.length)]);
+		store.bolissiFlag = false;
+	}
+}
 /*
 ** Event handles
 ** Check discord's api for this
@@ -71,6 +85,8 @@ client.on("ready", () => {
 });
 
 client.on("message", msg => {
+	if (msg.author.bot)
+		return ;
 	if (process.env.DEV === "true") {
 		// Add your modules here while testing
 		if (msg.channel.name === "bot-test") {
@@ -79,6 +95,7 @@ client.on("message", msg => {
 			module_mgheber(msg);
 			module_recoding(msg);
 			module_simplifier(msg);
+			module_nddah(msg);
 			control.command_test(client, msg);
 		}
 	} else {
@@ -97,7 +114,8 @@ client.on("message", msg => {
 });
 
 client.on("messageUpdate", (oldMsg, newMsg) => {
-	module_fjla(newMsg);
+	if (process.env.DEV === "false")
+		module_fjla(newMsg);
 });
 
 client.login(process.env.TOKEN);
