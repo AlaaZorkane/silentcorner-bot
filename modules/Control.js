@@ -116,16 +116,18 @@ const command_sc = (msg) => {
 }
 
 const command_trash = (msg) => {
-	console.log(msg);
-	const dolan_id = "413797403565621248";
+	const trash_cans = [
+		"278610142566547457", // Abida
+		"413797403565621248" // Dolan
+	];
 	const replies = [
 		"It's dolan... Duh.",
 		"It's you!",
 		"Abida, he smells trashy sometimes"
 	];
 	let reply = null;
-	if (msg.author.id === dolan_id)
-		reply = "It's you Dolan, you already know that!";
+	if (trash_cans.includes(msg.author.id))
+		reply = "It's you Trash can, you already know that!";
 	reply = reply || replies[Math.floor(Math.random() * replies.length)];
 	msg.channel.send(reply);
 }
