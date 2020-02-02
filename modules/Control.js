@@ -116,7 +116,17 @@ const command_sc = (msg) => {
 }
 
 const command_trash = (msg) => {
-	msg.channel.send("It's dolan... Duh.");
+	const dolan_id = "413797403565621248";
+	const replies = [
+		"It's dolan... Duh.",
+		"It's you!",
+		"Abida, he smells trashy sometimes"
+	];
+	let reply = null;
+	if (msg.author.id === dolan_id)
+		reply = "It's you Dolan, you already know that!";
+	reply = reply || replies[Math.floor(Math.random() * myArray.length)];
+	msg.channel.send(reply);
 }
 
 const command_tokens = (msg) => {
