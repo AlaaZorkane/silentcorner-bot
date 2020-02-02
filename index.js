@@ -1,7 +1,7 @@
 require("dotenv").config();
-const control = require("./modules/Control");
 const Discord = require("discord.js");
 const getToken = require("./utils/api");
+const control = require("./modules/Control");
 const client = new Discord.Client();
 
 /*
@@ -64,14 +64,14 @@ const module_simplifier = (msg) => {
 
 client.on("ready", () => {
 	getToken(client);
-	if (Boolean(process.env.DEV))
+	if (process.env.DEV === "true")
 		console.log(`[+] Bot launched in DEV MODE (Will only listen to messages in #bot-test) with tag ${client.user.tag}!`);
 	else
 		console.log(`[+] Bot initiated with tag ${client.user.tag}!`);
 });
 
 client.on("message", msg => {
-	if (Boolean(process.env.DEV)) {
+	if (process.env.DEV === "true") {
 		// Add your modules here while testing
 		if (msg.channel.name === "bot-test") {
 			module_faddoul(msg);
